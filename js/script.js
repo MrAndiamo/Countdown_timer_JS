@@ -5,25 +5,24 @@
  */
 function config() {
     
-    var $config = [];
-    $config.loadingBars = '.countdown-bar';
+    var config = [];
+    config.loadingBars_class = '.countdown-bar';
    
     // Countdown Loading Bar
-    $config.loadingBars_width = 200;
-    $config.loadingBars_height = 20;
-    $config.loadingBars_border_color = 'blue';
-    $config.loadingBars_color =  'darkblue';
-    $config.loadingBars_background_color =  'lightblue';
-    $config.finished_message = '';
+    config.loadingBars_width = 200;
+    config.loadingBars_height = 20;
+    config.loadingBars_border_color = 'blue';
+    config.loadingBars_color =  'darkblue';
+    config.loadingBars_background_color =  'lightblue';
     
     // Countdown Timer
-    $config.timer_color = 'blue';
-    $config.timer_font_weight = 700;
-    $config.timer_font = 'Verdana';
-    $config.timer_font_size = 12;
-    $config.endtime_message = 'Timer expired!';
+    config.timer_color = 'blue';
+    config.timer_font_weight = 700;
+    config.timer_font = 'Verdana';
+    config.timer_font_size = 12;
+    config.endtime_message = 'Timer expired!';
 
-    return $config;
+    return config;
 }
 
 
@@ -38,76 +37,76 @@ function config() {
  * 
  * Then call the function countdown('elementID', 0, 0, 0, 10)
  * 
- * @param {string} $element 
- * @param {number} $daysAdd 
- * @param {number} $hoursAdd 
- * @param {number} $minutesAdd 
- * @param {number} $secondsAdd 
+ * @param {string} element 
+ * @param {number} daysAdd 
+ * @param {number} hoursAdd 
+ * @param {number} minutesAdd 
+ * @param {number} secondsAdd 
  */
-function countdown($element, $daysAdd, $hoursAdd, $minutesAdd, $secondsAdd) {
+function countdown(element, daysAdd, hoursAdd, minutesAdd, secondsAdd) {
 
-    $config = this.config();
+    var config = this.config();
 
-    $($config.loadingBars).css('width', $config.loadingBars_width);
-    $($config.loadingBars).css('height', $config.loadingBars_height);
-    $($config.loadingBars).css('background-color', $config.loadingBars_background_color);
-    $($config.loadingBars).css('border-color', $config.loadingBars_border_color);
+    $(config.loadingBars_class).css('width', config.loadingBars_width);
+    $(config.loadingBars_class).css('height', config.loadingBars_height);
+    $(config.loadingBars_class).css('background-color', config.loadingBars_background_color);
+    $(config.loadingBars_class).css('border-color', config.loadingBars_border_color);
     
-    $dateNow = new Date();
-    $hour = $dateNow.getHours();
-    $minute = $dateNow.getMinutes();
-    $second = $dateNow.getSeconds();
-    $now_loader = new Date().getTime();
+    var dateNow = new Date();
+    var hour = dateNow.getHours();
+    var minute = dateNow.getMinutes();
+    var second = dateNow.getSeconds();
+    var now_loader = new Date().getTime();
         
     var interval = setInterval(function() {
 
-        $loadingBars_loader = $('#' + $element).children('div')[0];
-        $loadingBars_timer = $('#' + $element).children('div')[1];      
+        var loadingBars_loader = $('#' + element).children('div')[0];
+        var loadingBars_timer = $('#' + element).children('div')[1];      
 
-        $countDownDate = $dateNow.setDate($dateNow.getDate() + $daysAdd);
-        $countDownDate = $dateNow.setHours($hour + $hoursAdd);
-        $countDownDate = $dateNow.setMinutes($minute + $minutesAdd);
-        $countDownDate = $dateNow.setSeconds($second + $secondsAdd + 1);
+        var countDownDate = dateNow.setDate(dateNow.getDate() + daysAdd);
+        countDownDate = dateNow.setHours(hour + hoursAdd);
+        countDownDate = dateNow.setMinutes(minute + minutesAdd);
+        countDownDate = dateNow.setSeconds(second + secondsAdd + 1);
         
-        $now = new Date().getTime();    
-        $distance = $countDownDate - $now;
+        var now = new Date().getTime();    
+        var distance = countDownDate - now;
         
         
-        $distance_loader = $countDownDate - $now_loader;
-        $distance_loadingBar_part =  (($config.loadingBars_width / ($distance_loader - 1000)) * 1000);
-        $distance_loadingBar_part = Math.floor($distance_loadingBar_part * 10000) / 10000;
+        var distance_loader = countDownDate - now_loader;
+        var distance_loadingBar_part =  ((config.loadingBars_width / (distance_loader - 1000)) * 1000);
+        var distance_loadingBar_part = Math.floor(distance_loadingBar_part * 10000) / 10000;
         
-        $secondsPast = parseInt(($distance_loader - $distance) / 1000);
+        var secondsPast = parseInt((distance_loader - distance) / 1000);
         
-        $newDistance  = $distance_loadingBar_part * $secondsPast;
-        console.log($newDistance);
-        if($newDistance > $config.loadingBars_width) $newDistance = $config.loadingBars_width;
+        var newDistance  = distance_loadingBar_part * secondsPast;
+   
+        if(newDistance > config.loadingBars_width) newDistance = config.loadingBars_width;
         
-        $($loadingBars_loader).animate({ width: $newDistance + 'px' }, 500);
+        $(loadingBars_loader).animate({ width: newDistance + 'px' }, 500);
          
         // TIMER
-        $timerHtmlStart = '<span style="color: ' + $config.timer_color + '; font-weight: ' + $config.timer_font_weight + '; font-family: ' + $config.timer_font + '; font-size: ' + $config.timer_font_size + 'px;">';
-        $timerHtmlEnd = '</span>';
+        var timerHtmlStart = '<span style="color: ' + config.timer_color + '; font-weight: ' + config.timer_font_weight + '; font-family: ' + config.timer_font + '; font-size: ' + config.timer_font_size + 'px;">';
+        var timerHtmlEnd = '</span>';
         
         
         // set loading bar background-color as set in config
-        $($loadingBars_loader).css('background-color', $config.loadingBars_color);    
+        $(loadingBars_loader).css('background-color', config.loadingBars_color);    
 
-        $($loadingBars_timer).css('width', $config.loadingBars_width);
-        $($loadingBars_timer).css('height', $config.loadingBars_height);
+        $(loadingBars_timer).css('width', config.loadingBars_width);
+        $(loadingBars_timer).css('height', config.loadingBars_height);
         
-        if($distance <= 0) $distance = 0;
+        if(distance <= 0) distance = 0;
 
-        if($distance === 0) {
-                $($loadingBars_timer).html($timerHtmlStart + $config.endtime_message + $timerHtmlEnd);
+        if(distance === 0) {
+                $(loadingBars_timer).html(timerHtmlStart + config.endtime_message + timerHtmlEnd);
                      
                 clearInterval(interval);
                 return;
         } else {
 
-            $timeLeftFinal = setTimer($distance);
+            var timeLeftFinal = setTimer(distance);
 
-            $($loadingBars_timer).html($timerHtmlStart + $timeLeftFinal + $timerHtmlEnd);
+            $(loadingBars_timer).html(timerHtmlStart + timeLeftFinal + timerHtmlEnd);
             
         }   
     }, 1000);
@@ -119,14 +118,14 @@ function countdown($element, $daysAdd, $hoursAdd, $minutesAdd, $secondsAdd) {
 /**
  * Set the timer compared to what date it is and what time is set for it.
  * 
- * @param {timstamp} $distance 
+ * @param {timstamp} distance 
  */
-function setTimer($distance) {
+function setTimer(distance) {
     // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor($distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor(($distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor(($distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor(($distance % (1000 * 60)) / 1000);
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     if(hours < 10) {
         hours = "0" + hours;
