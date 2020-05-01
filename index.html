@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <!-- Title -->
+        <title>Countdown</title>
+
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
+
+        
+        <!-- Countdown Timer Default Style -->
+        <link href="css/stylesheet.css" rel="stylesheet">
+        
+
+
+        <!-- Countdown Timer JS Script -->
+        <script src="js/script.js" type="text/javascript"></script>
+        
+        
+    </head>
+    
+    <body>
+
+        <!-- Countdown timer html -->
+        <div class="countdown-bar" id="countdownA">
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- Countdown timer html -->
+        <div class="countdown-bar" id="countdownB">
+            <div></div>
+            <div></div>
+        </div>
+
+
+        <!-- Countdown Timer Script -->
+        <script src="css/stylesheet.js" type="text/javascript"></script>
+        
+        <script type="text/javascript">
+            $(document).ready(function () {
+                countdown('countdownA', 0, 1, 0, 15);
+
+                countdown('countdownB', 0, 0, 0, 10);
+
+            });
+        </script>
+        <!-- End script -->
+    </body>
+</html>
