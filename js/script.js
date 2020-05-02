@@ -17,7 +17,7 @@ function config() {
     
     // Countdown Timer
     config.timer_color = 'red';
-    config.loadingBars_timer_width = 90;
+    config.loadingBars_timer_width = 105;
     config.timer_font_weight = 700;
     config.timer_font = 'Verdana';
     config.timer_font_size = 12;
@@ -148,11 +148,11 @@ function setTimerLocation(config, loadingBars_main, loadingBars_timer) {
             break;
         case 'left':
             // code block
-            loadingBars_main.style.marginLeft =  (config.loadingBars_timer_width + 10) + 'px';
+            loadingBars_main.style.marginLeft =  (config.loadingBars_timer_width) + 'px';
             loadingBars_timer.style.position = 'absolute';
             loadingBars_timer.style.top = 0;
-            loadingBars_timer.style.left = '-' + (config.loadingBars_timer_width + 10) + 'px';
-            // loadingBars_timer.style.textAlign = 'right';
+            loadingBars_timer.style.left = '-' + (config.loadingBars_timer_width) + 'px';
+            loadingBars_timer.style.textAlign = 'left';
             break;
         case 'right':
             // code block
