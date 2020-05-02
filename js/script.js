@@ -16,13 +16,13 @@ function config() {
     config.loadingBars_background_color =  'lightblue';
     
     // Countdown Timer
-    config.timer_color = 'blue';
+    config.timer_color = 'red';
     config.loadingBars_timer_width = 90;
     config.timer_font_weight = 700;
     config.timer_font = 'Verdana';
     config.timer_font_size = 12;
     config.endtime_message = 'Timer expired!';
-    config.timer_location = 'right'; // middle = default / bottom / top / left / right
+    config.timer_location = 'middle'; // middle = default / bottom / top / left / right
 
     return config;
 }
@@ -86,6 +86,10 @@ function countdown(element, daysAdd, hoursAdd, minutesAdd, secondsAdd) {
         var distance = countDownDate - now;
         
         
+        if(typeof loadingBars_timer.dataset.location !== 'undefined') {
+            config.timer_location = loadingBars_timer.dataset.location;
+        }
+        
         var distance_loader = countDownDate - now_loader;
         var distance_loadingBar_part =  ((config.loadingBars_width / (distance_loader - 1000)) * 1000);
         var secondsPast = parseInt((distance_loader - distance) / 1000);
@@ -131,21 +135,24 @@ function setTimerLocation(config, loadingBars_main, loadingBars_timer) {
             // code block
             loadingBars_main.style.marginTop =  '20px';
             loadingBars_timer.style.position = 'absolute';
-            loadingBars_timer.style.top = '-20px';    
+            loadingBars_timer.style.top = '-20px';
+            loadingBars_timer.style.left = '2px';    
             break;
         case 'bottom':
             // code block
             loadingBars_main.style.marginBottom =  '20px';
             loadingBars_timer.style.position = 'absolute';
             loadingBars_timer.style.top = '20px';
+            loadingBars_timer.style.left = '2px';
+            
             break;
         case 'left':
             // code block
             loadingBars_main.style.marginLeft =  (config.loadingBars_timer_width + 10) + 'px';
             loadingBars_timer.style.position = 'absolute';
             loadingBars_timer.style.top = 0;
-            loadingBars_timer.style.left = '-' + (config.loadingBars_width + 10) + 'px';
-            loadingBars_timer.style.textAlign = 'right';
+            loadingBars_timer.style.left = '-' + (config.loadingBars_timer_width + 10) + 'px';
+            // loadingBars_timer.style.textAlign = 'right';
             break;
         case 'right':
             // code block
@@ -158,7 +165,7 @@ function setTimerLocation(config, loadingBars_main, loadingBars_timer) {
         default:
             loadingBars_timer.style.position = 'absolute';
             loadingBars_timer.style.top = 0;
-            loadingBars_timer.style.left = '10px';
+            loadingBars_timer.style.left = '5px';
     } 
 
 }
