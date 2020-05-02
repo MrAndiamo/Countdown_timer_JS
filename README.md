@@ -2,9 +2,7 @@
 
 Now fully javascript (no jQuery) and multiple counters possible<br>
 
-Try the script here on jsfiddle:<br>
-https://jsfiddle.net/MrVamos/L817vg2o/39/
-
+Try the script here on <a target="_blank" href="https://jsfiddle.net/MrVamos/L817vg2o/57">JSFiddle</a><br>
 
 <h4>Place in the header</h4>
 <sup>add countdown-bar stylesheet and script to page header</sup>
