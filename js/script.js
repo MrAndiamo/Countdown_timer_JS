@@ -71,11 +71,8 @@ function countdown(element, daysAdd, hoursAdd, minutesAdd, secondsAdd) {
         
     var interval = setInterval(function() {
 
-        var loadingBars_loader = document.getElementById(element).childNodes[1].id;
-        var loadingBars_timer = document.getElementById(element).childNodes[3].id;
-
-
-        document.getElementById(element).childNodes[3].style.height = 50;
+        var loadingBars_loader = document.getElementById(element).childNodes[1];
+        var loadingBars_timer = document.getElementById(element).childNodes[3];
 
         var countDownDate = dateNow.setDate(dateNow.getDate() + daysAdd);
         countDownDate = dateNow.setHours(hour + hoursAdd);
@@ -85,19 +82,17 @@ function countdown(element, daysAdd, hoursAdd, minutesAdd, secondsAdd) {
         var now = new Date().getTime();    
         var distance = countDownDate - now;
         
-        
+        // Calculate the new amount of distance in seconds to the end-time...
         var distance_loader = countDownDate - now_loader;
         var distance_loadingBar_part =  ((config.loadingBars_width / (distance_loader - 1000)) * 1000);
         var distance_loadingBar_part = Math.floor(distance_loadingBar_part * 10000) / 10000;
-        
         var secondsPast = parseInt((distance_loader - distance) / 1000);
-        
         var newDistance  = distance_loadingBar_part * secondsPast;
    
         if(newDistance > config.loadingBars_width) newDistance = config.loadingBars_width;
         
-        document.getElementById(loadingBars_loader).style.backgroundColor = config.loadingBars_color;
-        document.getElementById(loadingBars_loader).style.width = newDistance + 'px';
+        loadingBars_loader.style.backgroundColor = config.loadingBars_color;
+        loadingBars_loader.style.width = newDistance + 'px';
 
         // SET TIMER BEGIN- AND END-TEXTS
         var timerHtmlStart = '<span style="color: ' + config.timer_color + '; font-weight: ' + config.timer_font_weight + '; font-family: ' + config.timer_font + '; font-size: ' + config.timer_font_size + 'px;">';
@@ -105,17 +100,15 @@ function countdown(element, daysAdd, hoursAdd, minutesAdd, secondsAdd) {
 
         // SET LOADING-BAR
         if(distance <= 0) distance = 0;
-        if(distance === 0) {
+        if(distance === 0 || newDistance >= config.loadingBars_width)  {
 
-            document.getElementById(loadingBars_timer).innerHTML = (timerHtmlStart + config.endtime_message + timerHtmlEnd);
+            loadingBars_timer.innerHTML = timerHtmlStart + config.endtime_message + timerHtmlEnd;
             clearInterval(interval);
             return;
         
         } else {
-
             var timeLeftFinal = setTimer(distance);
-            document.getElementById(loadingBars_timer).innerHTML = timerHtmlStart + timeLeftFinal + timerHtmlEnd;
-            
+            loadingBars_timer.innerHTML = timerHtmlStart + timeLeftFinal + timerHtmlEnd;
         }   
     }, 1000);
 }
