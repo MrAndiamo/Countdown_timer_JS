@@ -23,15 +23,13 @@
             <div></div>
             <div data-location="left"></div>
         </div>
-        <br><hr>
 
         <!-- Countdown timer html A -->
         <h4>Timer on right</h4>
-         <div class="countdown-bar" id="countdownB">
+        <div class="countdown-bar" id="countdownB">
             <div></div>
             <div data-location="right"></div>
         </div>
-        <br><hr>
 
         <!-- Countdown timer html B -->
         <h4>Timer on top</h4>
@@ -39,7 +37,6 @@
             <div></div>
             <div data-location="top"></div>
         </div>
-        <br><hr>
 
         <!-- Countdown timer html C -->
         <h4>Timer on bottom</h4>
@@ -47,8 +44,6 @@
             <div></div>
             <div data-location="bottom"></div>
         </div>
-        <br><hr>
-
 
         <!-- Countdown timer html C -->
         <h4>Timer default (middle)</h4>
@@ -56,32 +51,30 @@
             <div></div>
             <div></div>
         </div>
-        <br><hr><br>
-
 
         <script>
             // Javascrip equivelant of jquery document.load...
             var loader = setInterval(function () {
                 if(document.readyState !== "complete") return;
-                    clearInterval(loader);
-               
-                   // call function for element countdown A ( 1 hour and 15 seconds)
-                   countdown('countdownA', 0, 0, 0, 15);
+                clearInterval(loader);
 
-                    // call function for element countdown B (10 seconds)
-                    countdown('countdownB', 0, 0, 20, 10);
+                // call function for element countdown A ( 1 hour and 15 seconds)
+                countdown('countdownA', 0, 1, 0, 15);
 
-                    // call function for element countdown B (10 seconds)
-                    countdown('countdownC', 0, 0, 1, 40);
+                // call function for element countdown B (10 seconds)
+                countdown('countdownB', 0, 0, 20, 10);
 
-                    // call function for element countdown B (10 seconds)
-                    countdown('countdownD', 0, 0, 0, 30);
+                // call function for element countdown B (10 seconds)
+                countdown('countdownC', 0, 0, 1, 40);
 
-                    // call function for element countdown B (10 seconds)
-                    countdown('countdownE', 0, 0, 0, 10);
+                // call function for element countdown B (10 seconds)
+                countdown('countdownD', 0, 0, 0, 30);
+
+                // call function for element countdown B (10 seconds)
+                countdown('countdownE', 0, 0, 0, 10);
 
             }, 100);
-         </script>
+        </script>
         <!-- End script -->
     </body>
 </html>

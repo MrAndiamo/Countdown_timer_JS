@@ -125,8 +125,10 @@ function countdown(element, daysAdd, hoursAdd, minutesAdd, secondsAdd) {
 
 
 /**
- * Set Timer location at middle/top/bottom/left/right of the loading-bar
- * @param {*} timer_location 
+ * Set Timer location at [middle/top/bottom/left/right] of the loading-bar
+ * 
+ * @param {*} timer_location
+ *  
  */
 function setTimerLocation(config, loadingBars_main, loadingBars_timer) {
 
@@ -194,13 +196,16 @@ function setTimer(distance) {
 
         if(days === 1) {
             var timeLeftFinal = days + " day + " + timeLeft;
+			return timeLeftFinal;
         } else {
             var timeLeftFinal = days + " days + " + timeLeft;
+			return timeLeftFinal;
         }
     
     } else {
         var timeLeftFinal = timeLeft;
+		return timeLeftFinal;
     }
-
-    return timeLeftFinal;
+		
+   
 }
