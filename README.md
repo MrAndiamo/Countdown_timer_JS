@@ -52,7 +52,6 @@ https://jsfiddle.net/MrVamos/L817vg2o/39/
             clearInterval(loader);        
             countdown('countdownA', 0, 0, 1, 5);
             countdown('countdownB', 0, 0, 0, 20);
-
         }, 100);
     </script>
 ```
@@ -63,7 +62,7 @@ https://jsfiddle.net/MrVamos/L817vg2o/39/
 
 ```javascript
     config.loadingBars_class = '.countdown-bar';
-   
+    
     // Countdown Loading Bar
     config.loadingBars_width = 200;
     config.loadingBars_height = 20;
@@ -80,4 +79,3 @@ https://jsfiddle.net/MrVamos/L817vg2o/39/
     config.endtime_message = 'Timer expired!';
     config.timer_location = 'middle'; // middle = default / bottom / top / left / right
 ```
-
