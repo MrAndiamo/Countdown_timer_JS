@@ -82,15 +82,16 @@ function countdown(element, daysAdd, hoursAdd, minutesAdd, secondsAdd) {
         var now = new Date().getTime();    
         var distance = countDownDate - now;
         
-        // Calculate the new amount of distance in seconds to the end-time...
+        
         var distance_loader = countDownDate - now_loader;
         var distance_loadingBar_part =  ((config.loadingBars_width / (distance_loader - 1000)) * 1000);
-        var distance_loadingBar_part = Math.floor(distance_loadingBar_part * 10000) / 10000;
+        // var distance_loadingBar_part = Math.floor(distance_loadingBar_part * 10000) / 10000;
         var secondsPast = parseInt((distance_loader - distance) / 1000);
+
+        // Set new distance (seconds)
         var newDistance  = distance_loadingBar_part * secondsPast;
-   
         if(newDistance > config.loadingBars_width) newDistance = config.loadingBars_width;
-        
+
         loadingBars_loader.style.backgroundColor = config.loadingBars_color;
         loadingBars_loader.style.width = newDistance + 'px';
 
@@ -98,9 +99,9 @@ function countdown(element, daysAdd, hoursAdd, minutesAdd, secondsAdd) {
         var timerHtmlStart = '<span style="color: ' + config.timer_color + '; font-weight: ' + config.timer_font_weight + '; font-family: ' + config.timer_font + '; font-size: ' + config.timer_font_size + 'px;">';
         var timerHtmlEnd = '</span>';
 
+
         // SET LOADING-BAR
-        if(distance <= 0) distance = 0;
-        if(distance === 0 || newDistance >= config.loadingBars_width)  {
+        if(newDistance == config.loadingBars_width) {
 
             loadingBars_timer.innerHTML = timerHtmlStart + config.endtime_message + timerHtmlEnd;
             clearInterval(interval);
