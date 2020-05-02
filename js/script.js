@@ -51,8 +51,7 @@ function countdown(element, daysAdd, hoursAdd, minutesAdd, secondsAdd) {
     // Set all loaders in javascript to the configuration length
 
     let loadingBars = document.querySelectorAll(config.loadingBars_class);
-    console.log(loadingBars.length);
-
+   
     // Implement settingg of loader as set in the config
     for (let i = 0; i < loadingBars.length; i++) {
         loadingBars[i].style.width = config.loadingBars_width + 'px';
@@ -72,8 +71,11 @@ function countdown(element, daysAdd, hoursAdd, minutesAdd, secondsAdd) {
         
     var interval = setInterval(function() {
 
-        var loadingBars_loader = $('#' + element).children('div')[0].id;
-        var loadingBars_timer = $('#' + element).children('div')[1].id;      
+        var loadingBars_loader = document.getElementById(element).childNodes[1].id;
+        var loadingBars_timer = document.getElementById(element).childNodes[3].id;
+
+
+        document.getElementById(element).childNodes[3].style.height = 50;
 
         var countDownDate = dateNow.setDate(dateNow.getDate() + daysAdd);
         countDownDate = dateNow.setHours(hour + hoursAdd);
@@ -161,4 +163,3 @@ function setTimer(distance) {
 
     return timeLeftFinal;
 }
-
