@@ -13,8 +13,10 @@ https://jsfiddle.net/MrVamos/L817vg2o/39/
 <h4>In the index</h4>
 <br>
 First add css/stylesheet.css and js/script.js to your header:<br>
-```html
+```css
 <link href="css/stylesheet.css" rel="stylesheet">
+```
+```html
 <script src="js/script.js" type="text/javascript"></script>
 ```
 <br><br>
