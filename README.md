@@ -1,4 +1,4 @@
-# Countdown_timer
+# Countdown Timer
 
 Now fully javascript (no jQuery) and multiple counters possible<br>
 
