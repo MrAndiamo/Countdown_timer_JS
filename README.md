@@ -6,7 +6,7 @@ Try the script here on jsfiddle:<br>
 https://jsfiddle.net/MrVamos/L817vg2o/39/
 
 
-<h4>In the header</h4>
+<h4>Place in the header</h4>
 <sup>add countdown-bar stylesheet and script to page header</sup>
 
 ```html
