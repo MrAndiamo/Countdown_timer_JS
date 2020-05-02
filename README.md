@@ -13,12 +13,11 @@ https://jsfiddle.net/MrVamos/L817vg2o/39/
 <h4>In the index</h4>
 <br>
 First add css/stylesheet.css and js/script.js to your header:<br>
-```css
-<link href="css/stylesheet.css" rel="stylesheet">
-```
 ```html
-<script src="js/script.js" type="text/javascript"></script>
+    <link href="css/stylesheet.css" rel="stylesheet">
+    <script src="js/script.js" type="text/javascript"></script>
 ```
+
 <br><br>
 In the body add a div with the class '.countdown-bar' and add an id of your choice.<br>
 ```html
