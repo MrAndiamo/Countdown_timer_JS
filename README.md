@@ -1,8 +1,7 @@
 # Countdown_timer
 Countdown timer.
 
-Now fully javascript (no jQuery) multiple counters possible
-<br><br>
+Now fully javascript (no jQuery) multiple counters possible<br>
 
 Try the script here on jsfiddle:<br>
 https://jsfiddle.net/MrVamos/L817vg2o/39/
