@@ -47,21 +47,33 @@ function countdown(element, daysAdd, hoursAdd, minutesAdd, secondsAdd) {
 
     var config = this.config();
 
-    $(config.loadingBars_class).css('width', config.loadingBars_width);
-    $(config.loadingBars_class).css('height', config.loadingBars_height);
-    $(config.loadingBars_class).css('background-color', config.loadingBars_background_color);
-    $(config.loadingBars_class).css('border-color', config.loadingBars_border_color);
-    
+
+    // Set all loaders in javascript to the configuration length
+
+    let loadingBars = document.querySelectorAll(config.loadingBars_class);
+    console.log(loadingBars.length);
+
+    // Implement settingg of loader as set in the config
+    for (let i = 0; i < loadingBars.length; i++) {
+        loadingBars[i].style.width = config.loadingBars_width + 'px';
+        loadingBars[i].style.height = config.loadingBars_height + 'px';
+        loadingBars[i].style.backgroundColor = config.loadingBars_background_color;
+        loadingBars[i].style.borderColor = config.loadingBars_border_color;
+    }
+
+    //cGat the date/hour/mimute/second right now
     var dateNow = new Date();
     var hour = dateNow.getHours();
     var minute = dateNow.getMinutes();
     var second = dateNow.getSeconds();
+    
+    // This needs to be outside the interval to be able to calculate the px per second a loading-bar should be filled
     var now_loader = new Date().getTime();
         
     var interval = setInterval(function() {
 
-        var loadingBars_loader = $('#' + element).children('div')[0];
-        var loadingBars_timer = $('#' + element).children('div')[1];      
+        var loadingBars_loader = $('#' + element).children('div')[0].id;
+        var loadingBars_timer = $('#' + element).children('div')[1].id;      
 
         var countDownDate = dateNow.setDate(dateNow.getDate() + daysAdd);
         countDownDate = dateNow.setHours(hour + hoursAdd);
@@ -82,31 +94,25 @@ function countdown(element, daysAdd, hoursAdd, minutesAdd, secondsAdd) {
    
         if(newDistance > config.loadingBars_width) newDistance = config.loadingBars_width;
         
-        $(loadingBars_loader).animate({ width: newDistance + 'px' }, 500);
-         
-        // TIMER
+        document.getElementById(loadingBars_loader).style.backgroundColor = config.loadingBars_color;
+        document.getElementById(loadingBars_loader).style.width = newDistance + 'px';
+
+        // SET TIMER BEGIN- AND END-TEXTS
         var timerHtmlStart = '<span style="color: ' + config.timer_color + '; font-weight: ' + config.timer_font_weight + '; font-family: ' + config.timer_font + '; font-size: ' + config.timer_font_size + 'px;">';
         var timerHtmlEnd = '</span>';
-        
-        
-        // set loading bar background-color as set in config
-        $(loadingBars_loader).css('background-color', config.loadingBars_color);    
 
-        $(loadingBars_timer).css('width', config.loadingBars_width);
-        $(loadingBars_timer).css('height', config.loadingBars_height);
-        
+        // SET LOADING-BAR
         if(distance <= 0) distance = 0;
-
         if(distance === 0) {
-                $(loadingBars_timer).html(timerHtmlStart + config.endtime_message + timerHtmlEnd);
-                     
-                clearInterval(interval);
-                return;
+
+            document.getElementById(loadingBars_timer).innerHTML = (timerHtmlStart + config.endtime_message + timerHtmlEnd);
+            clearInterval(interval);
+            return;
+        
         } else {
 
             var timeLeftFinal = setTimer(distance);
-
-            $(loadingBars_timer).html(timerHtmlStart + timeLeftFinal + timerHtmlEnd);
+            document.getElementById(loadingBars_timer).innerHTML = timerHtmlStart + timeLeftFinal + timerHtmlEnd;
             
         }   
     }, 1000);
