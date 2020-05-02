@@ -24,28 +24,17 @@ https://jsfiddle.net/MrVamos/L817vg2o/39/
         <div></div>
         <div></div>
     </div>
-    <div class="countdown-bar" id="countdownB">
-        <div></div>
-        <div></div>
-    </div>
 ```
 
 <h4>Add before the end of the body</h4>
 ```html
     <script>
-        // Javascrip equivelant of jquery document.load...
         var loader = setInterval(function () {
             if(document.readyState !== "complete") return;
-            clearInterval(loader);
-
-            // call function for element countdown A ( 1 hour and 15 seconds)
+            clearInterval(loader);        
             countdown('countdownA', 0, 0, 1, 5);
-
-            // call function for element countdown B (10 seconds)
             countdown('countdownB', 0, 0, 0, 20);
 
         }, 100);
     </script>
 ```
-
-<>
