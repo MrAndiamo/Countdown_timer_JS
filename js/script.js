@@ -17,10 +17,12 @@ function config() {
     
     // Countdown Timer
     config.timer_color = 'blue';
+    config.loadingBars_timer_width = 90;
     config.timer_font_weight = 700;
     config.timer_font = 'Verdana';
     config.timer_font_size = 12;
     config.endtime_message = 'Timer expired!';
+    config.timer_location = 'right'; // middle = default / bottom / top / left / right
 
     return config;
 }
@@ -71,6 +73,7 @@ function countdown(element, daysAdd, hoursAdd, minutesAdd, secondsAdd) {
         
     var interval = setInterval(function() {
 
+        var loadingBars_main = document.getElementById(element);
         var loadingBars_loader = document.getElementById(element).childNodes[1];
         var loadingBars_timer = document.getElementById(element).childNodes[3];
 
@@ -85,7 +88,6 @@ function countdown(element, daysAdd, hoursAdd, minutesAdd, secondsAdd) {
         
         var distance_loader = countDownDate - now_loader;
         var distance_loadingBar_part =  ((config.loadingBars_width / (distance_loader - 1000)) * 1000);
-        // var distance_loadingBar_part = Math.floor(distance_loadingBar_part * 10000) / 10000;
         var secondsPast = parseInt((distance_loader - distance) / 1000);
 
         // Set new distance (seconds)
@@ -100,6 +102,9 @@ function countdown(element, daysAdd, hoursAdd, minutesAdd, secondsAdd) {
         var timerHtmlEnd = '</span>';
 
 
+        this.setTimerLocation(config, loadingBars_main, loadingBars_timer);
+
+        
         // SET LOADING-BAR
         if(newDistance == config.loadingBars_width) {
 
@@ -112,6 +117,50 @@ function countdown(element, daysAdd, hoursAdd, minutesAdd, secondsAdd) {
             loadingBars_timer.innerHTML = timerHtmlStart + timeLeftFinal + timerHtmlEnd;
         }   
     }, 1000);
+}
+
+
+/**
+ * Set Timer location at middle/top/bottom/left/right of the loading-bar
+ * @param {*} timer_location 
+ */
+function setTimerLocation(config, loadingBars_main, loadingBars_timer) {
+
+    switch(config.timer_location) {
+        case 'top':
+            // code block
+            loadingBars_main.style.marginTop =  '20px';
+            loadingBars_timer.style.position = 'absolute';
+            loadingBars_timer.style.top = '-20px';    
+            break;
+        case 'bottom':
+            // code block
+            loadingBars_main.style.marginBottom =  '20px';
+            loadingBars_timer.style.position = 'absolute';
+            loadingBars_timer.style.top = '20px';
+            break;
+        case 'left':
+            // code block
+            loadingBars_main.style.marginLeft =  (config.loadingBars_timer_width + 10) + 'px';
+            loadingBars_timer.style.position = 'absolute';
+            loadingBars_timer.style.top = 0;
+            loadingBars_timer.style.left = '-' + (config.loadingBars_width + 10) + 'px';
+            loadingBars_timer.style.textAlign = 'right';
+            break;
+        case 'right':
+            // code block
+            loadingBars_timer.style.position = 'absolute';
+            loadingBars_timer.style.top = 0;
+            loadingBars_timer.style.left = config.loadingBars_width + 10 + 'px';
+            break;
+
+        case 'middle':
+        default:
+            loadingBars_timer.style.position = 'absolute';
+            loadingBars_timer.style.top = 0;
+            loadingBars_timer.style.left = '10px';
+    } 
+
 }
 
 
