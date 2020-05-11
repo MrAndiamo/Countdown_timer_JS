@@ -13,12 +13,12 @@ function config() {
 
     config.loadingBars_width = 200;
     config.loadingBars_height = 20;
-    config.loadingBars_border_color = 'blue';
-    config.loadingBars_color =  'darkblue';
-    config.loadingBars_background_color =  'lightblue';
+    config.loadingBars_border_color = 'black';
+    config.loadingBars_color =  'darkred';
+    config.loadingBars_background_color =  'grey';
     
     // Countdown Timer
-    config.timer_color = 'red';
+    config.timer_color = 'darkred';
     config.loadingBars_timer_width = 105;
     config.timer_font_weight = 700;
     config.timer_font = 'Verdana';
@@ -51,20 +51,6 @@ function countdown(element, daysAdd, hoursAdd, minutesAdd, secondsAdd) {
 
     var config = this.config();
 
-    // Set all loaders in javascript to the configuration length
-    let loadingBars = document.querySelectorAll(config.loadingBars_class);
-
-    // Implement settingg of loader as set in the config
-    for (let i = 0; i < loadingBars.length; i++) {
-        loadingBars[i].style.width = config.loadingBars_width + 'px';
-        loadingBars[i].style.height = config.loadingBars_height + 'px';
-        if(config.loadingTimers_show_loading_bar == true) {
-            loadingBars[i].style.backgroundColor = config.loadingBars_background_color;
-            loadingBars[i].style.borderColor = config.loadingBars_border_color;
-        }
-    }
-
-
     //cGat the date/hour/mimute/second right now
     var dateNow = new Date();
     var hour = dateNow.getHours();
@@ -78,6 +64,21 @@ function countdown(element, daysAdd, hoursAdd, minutesAdd, secondsAdd) {
     countDownDate = dateNow.setHours(hour + hoursAdd);
     countDownDate = dateNow.setMinutes(minute + minutesAdd);
     countDownDate = dateNow.setSeconds(second + secondsAdd + 1);
+
+    // Set all loaders in javascript to the configuration length
+    
+    let loadingBars = document.querySelectorAll(config.loadingBars_class);
+
+    // Implement settingg of loader as set in the config
+    for (let i = 0; i < loadingBars.length; i++) {
+        loadingBars[i].style.width = config.loadingBars_width + 'px';
+        loadingBars[i].style.height = config.loadingBars_height + 'px';
+        if(config.loadingTimers_show_loading_bar == true) {
+            loadingBars[i].style.backgroundColor = config.loadingBars_background_color;
+            loadingBars[i].style.borderColor = config.loadingBars_border_color;
+        }
+    }
+
 
 
     var interval = setInterval(function() {
