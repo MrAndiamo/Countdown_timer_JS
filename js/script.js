@@ -68,20 +68,21 @@ function countdown(element, daysAdd, hoursAdd, minutesAdd, secondsAdd) {
     var minute = dateNow.getMinutes();
     var second = dateNow.getSeconds();
     
-    // This needs to be outside the interval to be able to calculate the px per second a loading-bar should be filled
-    var now_loader = new Date().getTime();
-        
+    // These needs to be outside the interval to be able to calculate the px per second a loading-bar should be filled
+    var now_loader = new Date().getTime();    
+    var countDownDate = dateNow;
+    countDownDate = dateNow.setDate(dateNow.getDate() + daysAdd);
+    countDownDate = dateNow.setHours(hour + hoursAdd);
+    countDownDate = dateNow.setMinutes(minute + minutesAdd);
+    countDownDate = dateNow.setSeconds(second + secondsAdd + 1);
+
+
     var interval = setInterval(function() {
 
         var loadingBars_main = document.getElementById(element);
         var loadingBars_loader = document.getElementById(element).childNodes[1];
         var loadingBars_timer = document.getElementById(element).childNodes[3];
-
-        var countDownDate = dateNow.setDate(dateNow.getDate() + daysAdd);
-        countDownDate = dateNow.setHours(hour + hoursAdd);
-        countDownDate = dateNow.setMinutes(minute + minutesAdd);
-        countDownDate = dateNow.setSeconds(second + secondsAdd + 1);
-        
+    
         var now = new Date().getTime();    
         var distance = countDownDate - now;
         
@@ -105,9 +106,7 @@ function countdown(element, daysAdd, hoursAdd, minutesAdd, secondsAdd) {
         var timerHtmlStart = '<span style="color: ' + config.timer_color + '; font-weight: ' + config.timer_font_weight + '; font-family: ' + config.timer_font + '; font-size: ' + config.timer_font_size + 'px;">';
         var timerHtmlEnd = '</span>';
 
-
         this.setTimerLocation(config, loadingBars_main, loadingBars_timer);
-
         
         // SET LOADING-BAR
         if(newDistance == config.loadingBars_width) {
